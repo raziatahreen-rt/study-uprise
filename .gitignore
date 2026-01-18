@@ -1,0 +1,12 @@
+# Ignore OS files
+.DS_Store
+
+# Ignore dependency folders in ANY subdirectory
+**/node_modules
+
+# Ignore logs
+npm-debug.log
+
+# Ignore environment files in ANY subdirectory
+**/.env
+**/serviceAccountKey.json

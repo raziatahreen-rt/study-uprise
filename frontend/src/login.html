@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Study Uprise</title>
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ADD CDN SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+   <script>
+        const firebaseConfig = {
+            apiKey: "your-api-key",
+            authDomain: "your-auth-domain",
+            projectId: "study-uprise-id",
+            storageBucket: "your-storage-bucket",
+            messagingSenderId: "sender-id",
+            appId: "your-app-id"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<body class="bg-white font-[Inter] h-screen flex overflow-hidden">
+
+    <!-- Left Side: Visuals -->
+    <div class="hidden lg:flex w-1/2 bg-indigo-600 relative justify-center items-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-700 opacity-90"></div>
+        <div class="absolute w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 -top-10 -left-10"></div>
+        <div class="absolute w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-20 bottom-10 right-10"></div>
+        
+        <div class="relative z-10 text-white text-center px-12">
+            <i class="fa-solid fa-brain text-6xl mb-6 animate-bounce"></i>
+            <h2 class="text-4xl font-bold mb-4">Welcome Back!</h2>
+            <p class="text-indigo-100 text-lg">Your personalized learning journey continues here. Track your progress, save playlists, and master new skills.</p>
+        </div>
+    </div>
+
+    <!-- Right Side: Form -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-slate-50">
+        <div class="w-full max-w-md bg-white p-10 rounded-2xl shadow-xl border border-slate-100">
+            
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-slate-900">Study Uprise</h1>
+                <p id="form-title" class="text-slate-500 mt-2">Log in to your account</p>
+            </div>
+
+            <form id="auth-form" class="space-y-5">
+                <div id="auth-error" class="hidden p-4 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100 flex items-center">
+                    <i class="fa-solid fa-circle-exclamation mr-2"></i> <span id="error-msg"></span>
+                </div>
+
+                <div id="username-field" class="hidden">
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Username</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-3 top-3.5 text-slate-400"></i>
+                        <input id="username" type="text" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition" placeholder="johndoe">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-envelope absolute left-3 top-3.5 text-slate-400"></i>
+                        <input id="email" type="email" required class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition" placeholder="you@example.com">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-3 top-3.5 text-slate-400"></i>
+                        <input id="password" type="password" required class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <button id="submit-button" type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-lg shadow-indigo-200 transition transform hover:-translate-y-0.5">
+                    Login
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <a id="toggle-link" href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 transition">
+                    Don't have an account? Sign up
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/auth.js"></script>
+</body>
+</html>

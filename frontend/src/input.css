@@ -1,0 +1,6 @@
+/* frontend/src/input.css */
+
+/* These are the core Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

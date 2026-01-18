@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Document Summarizer | Study Uprise</title>
+    <link href="../css/main.css" rel="stylesheet">
+    
+    <!-- Add Firebase Scripts for Nav Bar & Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "your-api-key",
+            authDomain: "your-auth-domain",
+            projectId: "study-uprise-id",
+            storageBucket: "your-storage-bucket",
+            messagingSenderId: "sender-id",
+            appId: "your-app-id"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- 1. Navigation Header -->
+    <header class="shadow-md bg-white">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-indigo-600">Study Uprise 🧠</h1>
+            <div>
+                <a href="./index.html" class="text-gray-600 hover:text-indigo-600 mx-3">Home</a>
+                <a id="nav-dashboard-link" href="./dashboard.html" class="text-gray-600 hover:text-indigo-600 mx-3 hidden">Dashboard</a>
+                <a href="./summarizer.html" class="text-indigo-600 font-bold hover:text-indigo-700 mx-3">Summarizer</a>
+                <a id="nav-auth-button" href="./login.html" class="px-4 py-2 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition duration-150">
+                    Login / Signup
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 2. Main Summarizer Content -->
+    <main class="max-w-4xl mx-auto p-8 mt-12">
+        <section class="text-center">
+            <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+                AI Document Summarizer
+            </h2>
+            <p class="mt-4 text-xl text-gray-600">
+                Upload a PDF document to get a concise summary and generate a quiz!
+            </p>
+        </section>
+
+        <!-- Upload Form -->
+        <form id="summarize-form" class="mt-10 p-8 bg-white rounded-xl shadow-lg">
+            <div>
+                <label for="pdf-file" class="block text-sm font-medium text-gray-700">Upload your PDF (10MB Max)</label>
+                <input type="file" id="pdf-file" name="document" accept="application/pdf"
+                       class="mt-2 block w-full text-sm text-gray-500
+                              file:mr-4 file:py-2 file:px-4
+                              file:rounded-full file:border-0
+                              file:text-sm file:font-semibold
+                              file:bg-indigo-50 file:text-indigo-700
+                              hover:file:bg-indigo-100"/>
+            </div>
+            
+            <div class="mt-6">
+                <button id="summarize-button" type="submit"
+                        class="w-full px-6 py-3 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition duration-150 text-lg shadow-lg">
+                    Summarize
+                </button>
+            </div>
+        </form>
+
+        <!-- Results Area (Hidden by default) -->
+        <div id="results-container" class="mt-10 p-8 bg-white rounded-xl shadow-lg hidden">
+            
+            <!-- Header with Title and Quiz Button -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 pb-4 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-800">Document Summary</h3>
+                <!-- THIS IS THE BUTTON YOU WERE MISSING -->
+                <button id="quiz-button" class="mt-4 sm:mt-0 px-5 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700 transition duration-150 font-semibold shadow-md flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    Generate Quiz!
+                </button>
+            </div>
+
+            <!-- Summary Text Output -->
+            <div id="summary-output" class="text-gray-700 whitespace-pre-wrap leading-relaxed">
+                <!-- AI summary will appear here -->
+            </div>
+            
+            <!-- Debug Area -->
+            <h3 class="text-xl font-bold text-gray-600 mt-12 mb-2 border-b">Full Text (Debug)</h3>
+            <textarea id="fulltext-output" rows="5" class="w-full p-2 border border-gray-200 rounded-md bg-gray-50 text-xs text-gray-500" readonly>
+                <!-- Full extracted text will appear here -->
+            </textarea>
+        </div>
+
+    </main>
+
+    <!-- Link to the JS file -->
+    <script src="../js/summarizer.js"></script>
+</body>
+</html>
